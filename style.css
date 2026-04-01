@@ -1,0 +1,293 @@
+:root {
+  --bg: #ffffff;
+  --primary: #0b234d;
+  --muted: #6b7280;
+  --line: rgba(11, 35, 77, 0.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  color: var(--primary);
+}
+
+/* INTRO */
+#intro {
+  position: fixed;
+  inset: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  animation: introFadeOut 1s ease forwards;
+  animation-delay: 1.9s;
+}
+
+.intro-logo {
+  width: min(85vw, 85vh);
+  max-width: 900px;
+  max-height: 85vh;
+  object-fit: contain;
+  animation: introScale 1.2s ease;
+}
+
+@keyframes introScale {
+  from {
+    opacity: 0;
+    transform: scale(0.88);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes introFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* MAIN */
+#main {
+  position: relative;
+  width: 100%;
+  height: 100dvh;
+  opacity: 0;
+  transition: opacity 0.9s ease;
+}
+
+body.loaded #main {
+  opacity: 1;
+}
+
+/* BACKGROUND */
+#bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.hero-inner {
+  width: min(1320px, 100%);
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: clamp(24px, 5vw, 80px);
+}
+
+/* COPY */
+.copy {
+  order: 2;
+  text-align: center;
+  max-width: 700px;
+  justify-self: center;
+}
+
+.copy h1 {
+  margin: 0;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2rem, 3.2vw, 4rem);
+  line-height: 1.08;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.english {
+  margin-top: 28px;
+}
+
+.english p {
+  margin: 4px 0;
+  font-family: 'Inter', sans-serif;
+  font-size: clamp(1rem, 1.3vw, 1.28rem);
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.bottom {
+  margin-top: 34px;
+}
+
+.reveal-line {
+  margin: 0 0 18px;
+  font-size: clamp(0.95rem, 1vw, 1.08rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--primary);
+  opacity: 0.7;
+}
+
+.bottom a {
+  color: var(--primary);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(11, 35, 77, 0.18);
+  font-size: clamp(0.95rem, 1vw, 1.05rem);
+}
+
+/* BRAND */
+.brand {
+  order: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.brand img {
+  width: min(100%, 420px);
+  max-height: 62vh;
+  object-fit: contain;
+  display: block;
+  filter: drop-shadow(0 16px 26px rgba(11, 35, 77, 0.06));
+}
+
+/* REVEAL */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+.reveal-logo {
+  opacity: 0;
+  transform: translateY(18px);
+}
+
+body.loaded .reveal-text {
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.15s;
+}
+
+body.loaded .reveal-logo {
+  animation: fadeUp 0.9s ease forwards;
+  animation-delay: 0.45s;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* TABLET */
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .copy {
+    order: 1;
+    max-width: 760px;
+  }
+
+  .brand {
+    order: 2;
+  }
+
+  .brand img {
+    width: min(52vw, 280px);
+    max-height: 24vh;
+  }
+
+  .english {
+    margin-top: 22px;
+  }
+
+  .bottom {
+    margin-top: 24px;
+  }
+}
+
+/* PHONE */
+@media (max-width: 640px) {
+  .hero {
+    padding: 16px;
+  }
+
+  .hero-inner {
+    gap: 14px;
+  }
+
+  .copy h1 {
+    font-size: clamp(1.45rem, 7vw, 2.2rem);
+    line-height: 1.12;
+    letter-spacing: 0.03em;
+  }
+
+  .english p {
+    font-size: 0.95rem;
+    margin: 2px 0;
+  }
+
+  .brand img {
+    width: min(58vw, 220px);
+    max-height: 20vh;
+  }
+
+  .bottom {
+    margin-top: 18px;
+  }
+
+  .reveal-line,
+  .bottom a {
+    font-size: 0.9rem;
+  }
+
+  .intro-logo {
+    width: min(88vw, 88vh);
+  }
+}
+
+/* SHORT PHONE */
+@media (max-height: 760px) and (max-width: 1024px) {
+  .copy h1 {
+    font-size: clamp(1.35rem, 6.2vw, 2rem);
+  }
+
+  .english {
+    margin-top: 16px;
+  }
+
+  .english p {
+    font-size: 0.9rem;
+    line-height: 1.32;
+  }
+
+  .brand img {
+    max-height: 17vh;
+  }
+
+  .bottom {
+    margin-top: 14px;
+  }
+}
